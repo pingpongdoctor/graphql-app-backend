@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "name": "Simon2",
+    "age": 18,
+    "height": 180,
+    "friends": [
+      { "id": 2, "name": "simon2", "age": 19, "height": 180 },
+      { "id": 3, "name": "simon3", "age": 20, "height": 190 }
+    ],
+    "moviesIdArr": [1, 2]
+  },
+  {
+    "id": 2,
+    "name": "simon2",
+    "age": 19,
+    "height": 180,
+    "friends": [{ "id": 3, "name": "simon3", "age": 20, "height": 190 }],
+    "moviesIdArr": [2, 3]
+  },
+  { "id": 3, "name": "simon2", "age": 23, "height": 190, "moviesIdArr": [1, 3] }
+]
