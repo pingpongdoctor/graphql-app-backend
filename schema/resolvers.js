@@ -18,18 +18,34 @@ const resolvers = {
   //RESOLVERS FOR QUERY TYPES
   Query: {
     //FUNCTION TO RETURN USERS
-    users: () => {
-      const userArr = loadUsers();
-      return userArr;
+    users: (parent, args, contextValue) => {
+      const userArr = null;
+      if (userArr) {
+        return { users: userArr };
+      }
+      return { message: "The users do not exist" };
     },
     //FUNCTION TO RETURN A USER BASED ON USER ID
     //ARGS HELPS ACCESS THE ID FROM THE API REQUEST
     user: (parent, args) => {
-      const id = args.id;
+      const id = Number(args.id);
       const dataArr = loadUsers();
       //USE UNDERSCORE FROM LODASH LIBRARY TO RETURN A USER BASED ON ID
       const userData = dataArr.find((user) => user.id === id); //SINCE THE ID PASSED DOWN THROUGH THE ARGS IS CONVERTED TO A STRING SO WE NEED TO CONVERT IT BACK TO NUMBER
       return userData;
+    },
+  },
+
+  //RESOLVER TO RETURN THE VALUE FOR USERRESULT UNION
+  UsersResult: {
+    __resolveType(obj) {
+      if (obj.users) {
+        return "UsersResultValid";
+      }
+      if (obj.message) {
+        return "UsersResultError";
+      }
+      return null;
     },
   },
   //RESOLVERS FOR THE USER TYPE

@@ -11,6 +11,17 @@ const typeDefs = `#graphql
   likedmovies:[Movie]
   }
 
+  #UNION TO MANIPULATE THE VALUE OF THE USERS QUERY
+  type UsersResultValid{
+  users:[User!]!
+  }
+
+  type UsersResultError{
+  message:String!
+  }
+
+  union UsersResult = UsersResultValid | UsersResultError
+
   type Movie{
   id:ID!
   name:String!
@@ -19,7 +30,7 @@ const typeDefs = `#graphql
   #DEFINE QUERY TYPE
   type Query{
   #USERS
-  users:[User!]!
+  users:UsersResult
   #USER
   user(id:ID!):User!
   #MOVIES
